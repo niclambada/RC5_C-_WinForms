@@ -26,7 +26,7 @@ namespace CourseWork
         {
             int i = 0;
             textBox3.Clear();
-            
+            label4.Text = "";
             if (textBox1.Text.Length != 0)
             {
                 string[] str = new string[1000000];
@@ -40,7 +40,7 @@ namespace CourseWork
                     str[i] = v;
                     i++;
                 }
-
+                var startTime = System.Diagnostics.Stopwatch.StartNew();
                 for (int k = 0; k < i; k++)
                 {
                     textBox3.Text += Encoding.UTF7.GetString(rc5.Cipher(Encoding.UTF32.GetBytes(str[k])));
@@ -48,6 +48,16 @@ namespace CourseWork
                     str2 = rc5.Cipher(Encoding.UTF7.GetBytes(str[k]));
                     array.Add(str2);
                 }
+                startTime.Stop();
+                var resultTime = startTime.Elapsed;
+
+                // elapsedTime - строка, которая будет содержать значение затраченного времени
+                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
+                    resultTime.Hours,
+                    resultTime.Minutes,
+                    resultTime.Seconds,
+                    resultTime.Milliseconds);
+                label4.Text = elapsedTime.ToString();
             }
             else
             {
@@ -71,14 +81,25 @@ namespace CourseWork
         private void button2_Click(object sender, EventArgs e)
         {
             textBox4.Clear();
-
+            label5.Text = "";
             List<byte[]> dearray = new List<byte[]>();
             dearray = array;
+            var startTime = System.Diagnostics.Stopwatch.StartNew();
             for (int k = 0; k < dearray.Count; k++)
             {
                
               textBox4.Text += Encoding.UTF7.GetString(rc5.Decipher(dearray[k]));
             }
+            startTime.Stop();
+            var resultTime = startTime.Elapsed;
+
+            // elapsedTime - строка, которая будет содержать значение затраченного времени
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
+                resultTime.Hours,
+                resultTime.Minutes,
+                resultTime.Seconds,
+                resultTime.Milliseconds);
+            label5.Text = elapsedTime.ToString();
             dearray.Clear();
            
         }
