@@ -19,6 +19,7 @@ namespace CourseWork
         }
         byte[] key;
         public RC5 rc5; 
+        public RC5 rc5_2; 
         
         byte[] str2 = new byte[1000000];
         List<byte[]> array = new List<byte[]>();
@@ -82,13 +83,15 @@ namespace CourseWork
         {
             textBox4.Clear();
             label5.Text = "";
+            key = Encoding.UTF7.GetBytes(textBox1.Text);
+            rc5_2 = new RC5(key);
             List<byte[]> dearray = new List<byte[]>();
             dearray = array;
             var startTime = System.Diagnostics.Stopwatch.StartNew();
             for (int k = 0; k < dearray.Count; k++)
             {
                
-              textBox4.Text += Encoding.UTF7.GetString(rc5.Decipher(dearray[k]));
+              textBox4.Text += Encoding.UTF7.GetString(rc5_2.Decipher(dearray[k]));
             }
             startTime.Stop();
             var resultTime = startTime.Elapsed;
@@ -173,7 +176,7 @@ namespace CourseWork
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Key length (0-255) bit" + '\n' + "W = 64 bit" + '\n' + "R = 16" + '\n' + "Developed By Nikolay Tsvetkov");
+            MessageBox.Show("Key length (0-255) bit" + '\n' + "W = 64" + '\n' + "R = 16" + '\n' + "Developed By Nikolay Tsvetkov");
         }
     }
 }
