@@ -19,7 +19,8 @@ namespace CourseWork
         }
         byte[] key;
         public RC5 rc5; 
-        public RC5 rc5_2; 
+        public RC5 rc5_2;
+        int counter = 0;
         
         byte[] str2 = new byte[1000000];
         List<byte[]> array = new List<byte[]>();
@@ -28,6 +29,7 @@ namespace CourseWork
             int i = 0;
             textBox3.Clear();
             label4.Text = "";
+            textBox4.Clear();
             if (textBox1.Text.Length != 0)
             {
                 string[] str = new string[1000000];
@@ -66,11 +68,12 @@ namespace CourseWork
             }
 
         }
-        static IEnumerable<string> Split(string str)
+         IEnumerable<string> Split(string str)
         {
             while (str.Length % 16 != 0)
             {
-                str = str.Insert(str.Length,">");
+                str = str.Insert(str.Length, ">");
+                counter++;
             }
             while (str.Length > 0)
             {
@@ -81,99 +84,50 @@ namespace CourseWork
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox4.Clear();
-            label5.Text = "";
-            key = Encoding.UTF7.GetBytes(textBox1.Text);
-            rc5_2 = new RC5(key);
-            List<byte[]> dearray = new List<byte[]>();
-            dearray = array;
-            var startTime = System.Diagnostics.Stopwatch.StartNew();
-            for (int k = 0; k < dearray.Count; k++)
+            if (textBox1.Text.Length != 0)
             {
-               
-              textBox4.Text += Encoding.UTF7.GetString(rc5_2.Decipher(dearray[k]));
-            }
-            startTime.Stop();
-            var resultTime = startTime.Elapsed;
+                textBox4.Clear();
+                label5.Text = "";
+                key = Encoding.UTF7.GetBytes(textBox1.Text);
+                rc5_2 = new RC5(key);
+                List<byte[]> dearray = new List<byte[]>();
+                dearray = array;
+                var startTime = System.Diagnostics.Stopwatch.StartNew();
+                for (int k = 0; k < dearray.Count; k++)
+                {
 
-            // elapsedTime - строка, которая будет содержать значение затраченного времени
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
-                resultTime.Hours,
-                resultTime.Minutes,
-                resultTime.Seconds,
-                resultTime.Milliseconds);
-            label5.Text = elapsedTime.ToString();
-            dearray.Clear();
+                    textBox4.Text += Encoding.UTF7.GetString(rc5_2.Decipher(dearray[k]));
+                }
+                startTime.Stop();
+                var resultTime = startTime.Elapsed;
+
+                // elapsedTime - строка, которая будет содержать значение затраченного времени
+                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
+                    resultTime.Hours,
+                    resultTime.Minutes,
+                    resultTime.Seconds,
+                    resultTime.Milliseconds);
+                label5.Text = elapsedTime.ToString();
+                dearray.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Key value is empty!");
+            }
            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             string str = textBox4.Text;
-            textBox4.Text = str.Replace(">", "");
-
+            if (counter != 0 && str.Length!=0)
+            {
+                    textBox4.Text = str.Replace(">", "");
+                    counter = 0;  
+            }
+            //counter = 0;
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
+     
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Key length (0-255) bit" + '\n' + "W = 64" + '\n' + "R = 16" + '\n' + "Developed By Nikolay Tsvetkov");

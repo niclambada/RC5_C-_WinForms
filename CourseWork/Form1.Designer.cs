@@ -56,37 +56,35 @@ namespace CourseWork
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(275, 22);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(13, 154);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(275, 352);
             this.textBox2.TabIndex = 1;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(294, 154);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox3.Size = new System.Drawing.Size(347, 352);
             this.textBox3.TabIndex = 2;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(647, 154);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBox4.ReadOnly = true;
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox4.Size = new System.Drawing.Size(275, 352);
             this.textBox4.TabIndex = 3;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // button1
             // 
@@ -116,7 +114,6 @@ namespace CourseWork
             this.label1.Size = new System.Drawing.Size(32, 17);
             this.label1.TabIndex = 6;
             this.label1.Text = "Key";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button3
             // 
@@ -136,7 +133,6 @@ namespace CourseWork
             this.label2.Size = new System.Drawing.Size(110, 17);
             this.label2.TabIndex = 8;
             this.label2.Text = "EncryptionTime:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -146,7 +142,6 @@ namespace CourseWork
             this.label3.Size = new System.Drawing.Size(111, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "DecryptionTime:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -163,7 +158,6 @@ namespace CourseWork
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 17);
             this.label5.TabIndex = 11;
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -173,7 +167,6 @@ namespace CourseWork
             this.label6.Size = new System.Drawing.Size(118, 17);
             this.label6.TabIndex = 12;
             this.label6.Text = "Original message";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -183,7 +176,6 @@ namespace CourseWork
             this.label7.Size = new System.Drawing.Size(133, 17);
             this.label7.TabIndex = 13;
             this.label7.Text = "Encrypted message";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 
@@ -193,7 +185,6 @@ namespace CourseWork
             this.label8.Size = new System.Drawing.Size(134, 17);
             this.label8.TabIndex = 14;
             this.label8.Text = "Decrypted message";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // menuStrip1
             // 
@@ -243,7 +234,6 @@ namespace CourseWork
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RC5";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
